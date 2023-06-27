@@ -1,0 +1,57 @@
+
+.gradient-custom-4 {
+    /* fallback for old browsers */
+    background: #84cffa;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgb(92, 116, 142), rgba(143, 211, 244, 1));
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgb(22, 73, 173), rgb(50, 71, 82))
+
+    }
+
+*{
+  margin: 0;
+  padding: 0;
+  /* box-sizing: border-box; */
+  font-family: Arial, Helvetica, sans-serif;
+
+
+}
+
+body{
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  background-image: url('./image/69-699766_chill-wallpaper-gif.jpg');
+  background-size: cover;
+  animation: move 15s linear alternate infinite;
+}
+
+@keyframes move{
+  50%{
+      background-position: 50%;
+  }
+}
+.form-rong{
+  width: 500px;
+}
+    .mrt{
+        margin-top: 15px;
+    }
+    span{
+      color: red;
+    }
+
+    label{
+      font-weight: bold;
+    }
+
+
+
+
+
+

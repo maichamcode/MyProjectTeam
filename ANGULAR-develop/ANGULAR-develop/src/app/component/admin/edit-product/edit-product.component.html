@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Colorlib Templates" />
+    <meta name="author" content="Colorlib" />
+    <meta name="keywords" content="Colorlib Templates" />
+
+    <!-- Title Page-->
+    <title>Au Register Forms by Colorlib</title>
+
+    <!-- Icons font CSS-->
+    <!-- <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all"> -->
+    <!-- <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all"> -->
+    <!-- Font special for pages-->
+    <link
+        href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet" />
+
+    <!-- Vendor CSS-->
+    <!-- <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all"> -->
+    <!-- <link href="vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all"> -->
+
+    <!-- Main CSS-->
+    <!-- <link href="css/main.css" rel="stylesheet" media="all"> -->
+</head>
+
+<body>
+    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+                    <h2 class="title">Update Product</h2>
+                    <form [formGroup]="productForm" (ngSubmit)="onHandleSubmit()">
+                        <div class="row row-space">
+                            <div class="col">
+                                <div class="input-group">
+                                    <label class="label">Product Name</label>
+                                    <input class="input--style-4" type="text" name="name" formControlName="name"
+                                        [(ngModel)]="product.name" />
+                                    <!-- validate name -->
+                                    <div *ngIf="
+                        validateForm.name.dirty || validateForm.name.touched
+                      ">
+                                        <div *ngIf="validateForm.name.errors">
+                                            <div *ngIf="validateForm.name.errors['required']">
+                                                <span style="color: red;">Name không được để trống!</span>
+                                            </div>
+                                            <div *ngIf="validateForm.name.errors['maxlength']">
+                                                <span style="color: red;">Name không được quá 20 ký tự!</span>
+                                            </div>
+                                            <div *ngIf="validateForm.name.errors['minlength']">
+                                                <span style="color: red;">Name không được ít hơn 8 ký tự!</span>
+                                            </div>
+                                            <div *ngIf="validateForm.name.errors['pattern']">
+                                                <span style="color: red;">Name không cho phép bạn space quá 2
+                                                    lần!</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end validate name -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col">
+                                <div class="input-group">
+                                    <label class="label">Price</label>
+                                    <input class="input--style-4" type="number" name="price" formControlName="price"
+                                        [(ngModel)]="product.price" />
+                                    <!-- validate price -->
+
+                                    <div *ngIf="
+                        validateForm.price.dirty || validateForm.price.touched
+                      ">
+                                        <div *ngIf="validateForm.price.errors">
+                                            <div *ngIf="validateForm.price.errors['min']">
+                                                <span style="color: red;">Price phải lớn hơn 1 không được để 0!</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- end validate price -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row row-space">
+                            <div class="col">
+                                <div class="input-group dpl">
+                                    <label class="label">Category</label>
+                                    <select class="form-control w sl" name="categoryId" formControlName="categoryId"
+                                        [(ngModel)]="product.categoryId">
+                                        <option value="all">All</option>
+                                        <option *ngFor="let category of categories" value="{{ category._id }}">
+                                            {{ category.name }}
+                                        </option>
+                                    </select>
+                                    <!-- validate Category -->
+                                    <div *ngIf="
+                        validateForm.categoryId.dirty ||
+                        validateForm.categoryId.touched
+                      ">
+                                        <div *ngIf="validateForm.categoryId.errors">
+                                            <div *ngIf="validateForm.categoryId.errors['required']">
+                                                <span style="color: red;">Category không được để trống!</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End validate Category -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row row-space">
+                            <div class="col">
+                                <div class="input-group dpl">
+                                    <label class="label">Description</label>
+                                    <!-- <input class="input--style-4" type="email" name="email"> -->
+                                    <textarea class="form-control w sl" rows="3" cols="10" name="desc"
+                                        formControlName="desc" [(ngModel)]="product.desc"></textarea>
+                                    <!-- validate Desc -->
+                                    <div *ngIf="
+                        validateForm.desc.dirty || validateForm.desc.touched
+                      ">
+                                        <div *ngIf="validateForm.desc.errors">
+                                            <div *ngIf="validateForm.desc.errors['required']">
+                                                <span style="color: red;">Desc không được để trống!</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End validate desc -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Image</label>
+
+                            <input type="file" name="img" #fileInput class="form-control w sl" formControlName="img"
+                                (change)="HandleUpload(fileInput)" />
+                            <!-- validate img -->
+
+                            <div *ngIf="validateForm.img.errors">
+                                <div *ngIf="validateForm.img.errors['required']">
+                                    <span style="color: red;">Image không được để trống!</span>
+                                </div>
+                            </div>
+
+                            <!-- end validate img -->
+                        </div>
+                        <div class="p-t-15" *ngIf="productForm.valid">
+                            <button class="btn btn--radius-2 btn--blue" [disabled]="uploading" type="submit">
+                                Update
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="../add-product/vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="../add-product/vendor/select2/select2.min.js"></script>
+    <script src="../add-product/vendor/select2/select2.min.js"></script>
+    <script src="../add-product/vendor/datepicker/moment.min.js"></script>
+    <script src="../add-product/vendor/datepicker/daterangepicker.js"></script>
+
+    <!-- Main JS-->
+    <script src="js/global.js"></script>
+</body>
+<!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
+<!-- end document-->

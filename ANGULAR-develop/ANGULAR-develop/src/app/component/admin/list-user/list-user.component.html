@@ -1,0 +1,45 @@
+<section class="main-content">
+    <div class="container" width="100%">
+        <h1>List Users</h1>
+
+        <table class="table" width="90%" cellspacing="">
+            <thead>
+                <tr>
+                    <th>Stt</th>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Email</th>
+               
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr  class="tr" *ngFor="let user of users , index as i">
+                    <td>
+                        {{i+1}}
+                    </td>
+                    <td>
+                        <div class="user-info">
+                            <div class="user-info__img">
+                                <img src="{{user.image}}" alt="User Img">
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        {{user.name}}
+                    </td>
+                    <td>{{user.email}}</td>
+              
+                    <td>{{user.role}}</td>
+                    <td>
+                        <button class="btn btn-danger btn-sm mrr" (click)="HandleRemove(user._id)">Remove
+                        </button>
+                    </td>
+
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</section>

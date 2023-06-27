@@ -1,0 +1,196 @@
+<section class="h-100 bg-dark">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="card card-registration my-4">
+          <form
+            [formGroup]="userForm"
+            class="row g-0"
+            (ngSubmit)="HandleSignup()"
+          >
+            <div class="col-xl-6 d-none d-xl-block">
+              <img
+                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
+                alt="Sample photo"
+                class="img-fluid"
+                style="
+                  border-top-left-radius: 0.25rem;
+                  border-bottom-left-radius: 0.25rem;
+                "
+              />
+            </div>
+            <div class="col-xl-6">
+              <div class="card-body p-md-5 text-black">
+                <h3 class="mb-5 text-uppercase">Register Form</h3>
+                <div class="row">
+                  <div class="col-md mb">
+                    <div class="form-outline">
+                      <label class="form-label" for="form3Example1m"
+                        >Name</label
+                      >
+                      <input
+                        type="text"
+                        id="form3Example1m"
+                        class="form-control form-control-lg"
+                        name="name"
+                        formControlName="name"
+                      />
+                      <!-- validate name -->
+                      <div
+                        *ngIf="
+                          validateForm.name.dirty || validateForm.name.touched
+                        "
+                      >
+                        <div *ngIf="validateForm.name.errors">
+                          <div *ngIf="validateForm.name.errors['required']">
+                            <span>Name không được để trống!</span>
+                          </div>
+                          <div *ngIf="validateForm.name.errors['maxlength']">
+                            <span>Name không được quá 20 ký tự!</span>
+                          </div>
+                          <div *ngIf="validateForm.name.errors['minlength']">
+                            <span>Name không được ít hơn 8 ký tự!</span>
+                          </div>
+                          <div *ngIf="validateForm.name.errors['pattern']">
+                            <span
+                              >Name không cho phép bạn space quá 2 lần!</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <!-- end validate name -->
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md mb">
+                    <div class="form-outline">
+                      <label class="form-label" for="form3Example1m1"
+                        >Email</label
+                      >
+                      <input
+                        type="text"
+                        id="form3Example1m1"
+                        class="form-control form-control-lg"
+                        name="email"
+                        formControlName="email"
+                      />
+                      <!-- validate email -->
+
+                      <div
+                        *ngIf="
+                          validateForm.email.dirty || validateForm.email.touched
+                        "
+                      >
+                        <div *ngIf="validateForm.email.errors">
+                          <div *ngIf="validateForm.email.errors['required']">
+                            <span>Email không được để trống!</span>
+                          </div>
+                          <div *ngIf="validateForm.email.errors['pattern']">
+                            <span>Email không hợp lệ !</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- end validate email -->
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="form-outline mb-4">
+                                    <input type="text" id="form3Example8" class="form-control form-control-lg" />
+                                    <label class="form-label" for="form3Example8">Address</label>
+                                </div> -->
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example9">Password</label>
+                  <input
+                    type="password"
+                    id="form3Example9"
+                    class="form-control form-control-lg"
+                    name="password"
+                    formControlName="password"
+                  />
+                  <!-- validate password -->
+
+                  <div
+                    *ngIf="
+                      validateForm.password.dirty ||
+                      validateForm.password.touched
+                    "
+                  >
+                    <div *ngIf="validateForm.password.errors">
+                      <div *ngIf="validateForm.password.errors['required']">
+                        <span>Password không được để trống!</span>
+                      </div>
+                      <div *ngIf="validateForm.password.errors['pattern']">
+                        <span
+                          >Password phải có 8 ký tự chứa ít nhất một ký tự in
+                          hoa, một ký tự thường, một chữ số và một ký tự đặc
+                          biệt!</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- end validate password -->
+                </div>
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example90"
+                    >Confirm Password</label
+                  >
+                  <input
+                    type="password"
+                    id="form3Example90"
+                    class="form-control form-control-lg"
+                    name="confirmpassword"
+                    formControlName="confirmpassword"
+                  />
+                  <!-- validate confirmpassword -->
+                  <div
+                    *ngIf="
+                      validateForm.confirmpassword.dirty ||
+                      validateForm.confirmpassword.touched
+                    "
+                  >
+                    <div *ngIf="validateForm.confirmpassword.errors">
+                      <div
+                        *ngIf="validateForm.confirmpassword.errors['required']"
+                      >
+                        <span>Password không được để trống!</span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end validate confirmpassword -->
+                </div>
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example99">Avata</label>
+                  <input
+                    type="file"
+                    id="form3Example99"
+                    #fileInput
+                    class="form-control form-control-lg"
+                    name="image"
+                    formControlName="image"
+                    (change)="HandleUpload(fileInput)"
+                  />
+                  <!-- validate image -->
+                  <div *ngIf="validateForm.image.errors">
+                    <div *ngIf="validateForm.image.errors['required']">
+                      <span>Image không được để trống!</span>
+                    </div>
+                  </div>
+                  <!-- end validate image -->
+                </div>
+                Bạn đã có tài khoản? <a href="/login">Đăng nhập</a>
+                <div class="d-flex justify-content-end pt-3">
+                  <button type="submit" class="btn btn-warning btn-lg ms-2">
+                    Submit form
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

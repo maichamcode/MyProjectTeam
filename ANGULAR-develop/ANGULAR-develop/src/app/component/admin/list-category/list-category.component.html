@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
+</head>
+
+<body>
+    <section class="main-content">
+        <div class="container">
+            <h1>List Categories</h1>
+            <a href="admin/category/add"><button class="btn btn-success btn-sm mrt" >Add Category</button></a>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Stt</th>
+                        <th>Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let category of categorys  index as i">
+                        <td>
+                            {{i+1}}
+                        </td>
+                        <td>
+                            <div class="user-info">
+                                <div class="user-info__img">
+                                    <img src="{{category.img}}" alt="User Img">
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            {{category.name}}
+                        </td>
+                        <td>
+                            <button class="btn btn-danger btn-sm mrr" (click)="HandleRemove(category._id)">Remove
+                            </button><a href="/admin/category/{{category._id}}/edit"><button class="btn btn-success btn-sm">Edit</button></a>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

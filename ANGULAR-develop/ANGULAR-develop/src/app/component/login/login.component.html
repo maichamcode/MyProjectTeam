@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+  <!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
+</head>
+
+<body>
+  <section class="">
+    <div class="">
+      <div class="">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="form-rong">
+            <div class="card mrt" style="border-radius: 15px">
+              <div class="card-body p-5">
+                <h2 class="text-uppercase text-center mb-5">Sign in</h2>
+
+                <form [formGroup]="userForm" (ngSubmit)="HandleLogin()">
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="form3Example1cg">
+                      Email</label>
+                    <input type="texy" id="email" class="form-control form-control-lg" name="email"
+                      formControlName="email" />
+                    <!-- validate email -->
+
+                    <div *ngIf="
+                          validateForm.email.dirty || validateForm.email.touched
+                        ">
+                      <div *ngIf="validateForm.email.errors">
+                        <div *ngIf="validateForm.email.errors['required']">
+                          <span>Email không được để trống!</span>
+                        </div>
+                        <div *ngIf="validateForm.email.errors['pattern']">
+                          <span>Email không hợp lệ hoặc chưa được đăng ký!</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- end validate email -->
+                  </div>
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="form3Example1cg">Password</label>
+                    <input type="password" id="password" class="form-control form-control-lg" name="password"
+                      formControlName="password" />
+                    <!-- validate password -->
+
+                    <div *ngIf="
+                          validateForm.password.dirty ||
+                          validateForm.password.touched
+                        ">
+                      <div *ngIf="validateForm.password.errors">
+                        <div *ngIf="validateForm.password.errors['required']">
+                          <span>Password không được để trống!</span>
+                        </div>
+                        <div *ngIf="validateForm.password.errors['minlength']">
+                          <span>Password không được ít hơn 8 ký tự</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- end validate password -->
+                  </div>
+                  Bạn chưa có tài khoản? <a href="/register">Đăng ký</a>
+                  <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4">
+                      Signin
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>

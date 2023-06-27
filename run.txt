@@ -1,0 +1,1 @@
+- cd vào 2 folder -> npm i -> npm run dev để chạy angular và nodejs 

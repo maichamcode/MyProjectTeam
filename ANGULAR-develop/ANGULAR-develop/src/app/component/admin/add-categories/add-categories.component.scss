@@ -1,0 +1,18 @@
+
+    .gradient-custom-4 {
+    /* fallback for old browsers */
+    background: #84cffa;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgb(92, 116, 142), rgba(143, 211, 244, 1));
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgb(22, 73, 173), rgb(50, 71, 82))
+    }
+    .mrt{
+        margin-top: 15px;
+    }
+    span{
+      color: red;
+     margin-top: 20px;
+    }

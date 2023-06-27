@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+
+  <meta charset="UTF-8">
+
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+  <!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
+</head>
+<section class="vh-100 bg-image">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card mrt" style="border-radius: 15px;">
+            <div class="card-body p-5 ">
+              <h2 class="text-uppercase text-center mb-5">Add Categories</h2>
+              <form [formGroup]="categoryForm" (ngSubmit)="HandleAdd()">
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example1cg">
+                    Category Name</label>
+                  <input type="text" id="form3Example1cg" class="form-control form-control-lg" required minlength="4"
+                    appForbiddenName="bob" name="name" formControlName="name" />
+                  <!-- validate name -->
+                  <div *ngIf="
+                        validateFormCategory.name.dirty ||
+                        validateFormCategory.name.touched
+                      ">
+                    <div *ngIf="validateFormCategory.name.errors">
+                      <div *ngIf="validateFormCategory.name.errors['required']">
+                        <span>Name không được để trống!</span>
+                      </div>
+                      <div *ngIf="validateFormCategory.name.errors['pattern']">
+                        <span>Name không cho phép bạn space quá 2 lần!</span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end validate name -->
+                </div>
+                <div class="form-outline mb-4">
+                  <label class="label">Image</label>
+                      <input type="file" id="form3Example1cg" #fileInput class="form-control form-control-lg" 
+                        appForbiddenName="bob" name="img" formControlName="img"
+                    (change)="HandleUpload(fileInput)" />
+                  <!-- validate img -->
+                  <div *ngIf="validateFormCategory.img.errors">
+                    <div *ngIf="validateFormCategory.img.errors['required']">
+                      <span>Image không được để trống!</span>
+                    </div>
+                  </div>
+                  <!-- end validate img -->
+                  
+                  <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4"
+                      [disabled]="uploading">
+                      Add Category
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</html>

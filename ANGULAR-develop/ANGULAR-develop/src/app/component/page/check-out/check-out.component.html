@@ -1,0 +1,110 @@
+<!-- Page Header Start -->
+<div class="container-fluid bg-secondary mb-5">
+    <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+        <h1 class="font-weight-semi-bold text-uppercase mb-3">Checkout</h1>
+        <div class="d-inline-flex">
+            <p class="m-0"><a href="/">Home</a></p>
+            <p class="m-0 px-2">-</p>
+            <p class="m-0">Checkout</p>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+<!-- Checkout Start -->
+<div class="container-fluid pt-5">
+    <div class="row px-xl-5">
+        <div class="col-lg-8">
+            <div class="mb-4">
+                <h4 class="font-weight-semi-bold mb-4">Billing Address</h4>
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label>Full Name</label>
+                        <input class="form-control" type="text" placeholder="Full Name" name="name"  [(ngModel)]="checkout.name">
+                    </div>
+
+                    <div class="col-md-6 form-group">
+                        <label>E-mail</label>
+                        <input class="form-control" type="text" placeholder="example@email.com" name="email" [(ngModel)]="checkout.email">
+                    </div>
+
+                    <div class="col-md-6 form-group">
+                        <label>Your House Number</label>
+                        <input class="form-control" type="text" placeholder="123 Street" name="numberHouse" (change)="handleNumberHouse()" [(ngModel)]="checkout.numberHouse">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Mobile No</label>
+                        <input class="form-control" type="text" placeholder="+123 456 789" name="phone" (change)="handlePhone()" [(ngModel)]="checkout.phone">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Tỉnh</label>
+                        <select class="custom-select" (change)="getDistrictsByProvinceId($event)"  [(ngModel)]="provinceId" name="provinceId">
+                            <option value="">--- Chọn tỉnh ---</option>
+                            <option *ngFor="let province of provinces" [ngValue]="{name: province.province_name, value: province.province_id}">{{
+                                province.province_name }}</option>
+                        </select>
+
+                        <label>Huyện</label>
+                        <select class="custom-select" (change)="getWardsByDistrictId($event)" [(ngModel)]="districtId">
+                            <option value="">--- Chọn huyện ---</option>
+                            <option *ngFor="let district of districts" [ngValue]="{name: district.district_name, value: district.district_id}">{{ district.district_name }}
+                            </option>
+                        </select>
+
+                        <label>Xã</label>
+                        <select class="custom-select" (change)="defaulBill()"  [(ngModel)]="wardId">
+                            <option value="">--- Chọn xã ---</option>
+                            <option *ngFor="let ward of wards" [ngValue]="{name: ward.ward_name, value: ward.ward_id}">{{ ward.ward_name }}</option>
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-4">
+            <div class="card border-secondary mb-5">
+                <div class="card-header bg-secondary border-0">
+                    <h4 class="font-weight-semi-bold m-0">Order Total</h4>
+                </div>
+                <div class="card-body">
+                    <h5 class="font-weight-medium mb-3">Products</h5>
+                    <div class="d-flex justify-content-between" *ngFor="let product of products">
+                        <p>{{product.name}}</p>
+                        <p>$ {{product.price}}</p>
+                    </div>
+                   
+                    <hr class="mt-0">
+                  
+                    <div class="d-flex justify-content-between">
+                        <h6 class="font-weight-medium">Shipping</h6>
+                        <h6 class="font-weight-medium">$10</h6>
+                    </div>
+                </div>
+                <div class="card-footer border-secondary bg-transparent">
+                    <div class="d-flex justify-content-between mt-2">
+                        <h5 class="font-weight-bold">Total</h5>
+                        <h5 class="font-weight-bold">$ {{checkout.price}}</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="card border-secondary mb-5">
+                <div class="card-header bg-secondary border-0">
+                    <h4 class="font-weight-semi-bold m-0">Payment</h4>
+                </div>
+                <div class="card-body">
+                    
+                    <div class="">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" name="payment" id="banktransfer" value="Payment on delivery" (change)="HandlePay($event)">
+                            <label class="custom-control-label" for="banktransfer" >Payment on delivery</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer border-secondary bg-transparent">
+                    <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3" (click)="addToBill()" >Place Order</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Checkout End -->
